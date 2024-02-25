@@ -37,7 +37,7 @@ jobs:
           #TODO: Calculate fetch depth up to the parent branch's last version tag (this is all gitversion really needs)
           fetch-depth: 0
       - name: ⚡ Install PowerShell Modules
-        uses: JustinGrote/ModuleFast-action
+        uses: JustinGrote/ModuleFast-action@v0.0.1
 
       - if: steps.debugStatus.outputs.stepDebug
         name: 🔬 Powershell Environment Information
