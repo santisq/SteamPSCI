@@ -13,8 +13,6 @@ param(
 )
 
 end {
-    Set-BuildEnvironment
-
     if ($PSEdition -eq 'Desktop') {
         [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor 'Tls12'
     }
@@ -57,6 +55,8 @@ end {
 
         Import-Module -Name $targetPath -Force -ErrorAction Stop -DisableNameChecking
     }
+
+    Set-BuildEnvironment
 
     if (Test-Path (Join-Path $PSScriptRoot src)) {
         $dotnetTools = @(dotnet tool list --global) -join "`n"
