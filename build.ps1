@@ -17,7 +17,7 @@ end {
         [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor 'Tls12'
     }
 
-    $modulePath = [IO.Path]::Combine($PSScriptRoot, 'tools', 'SteamPS')
+    $modulePath = [IO.Path]::Combine($PSScriptRoot, 'tools', 'Modules')
     $requirements = Import-PowerShellDataFile ([IO.Path]::Combine($PSScriptRoot, 'tools', 'requiredModules.psd1'))
 
     foreach ($req in $requirements.GetEnumerator() | Sort-Object { $_.Value['Priority'] }) {
