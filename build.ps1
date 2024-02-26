@@ -13,6 +13,8 @@ param(
 )
 
 end {
+    Set-BuildEnvironment
+
     if ($PSEdition -eq 'Desktop') {
         [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor 'Tls12'
     }
