@@ -54,15 +54,24 @@ jobs:
       fail-fast: false
       matrix:
         info:
-        - name: PS-5.1
+        - name: Win2016_PS-5.1
+          psversion: '5.1'
+          os: windows-2016
+        - name: Win2016_PS-7
+          psversion: '7'
+          os: windows-2016
+        - name: Win2019_PS-5.1
+          psversion: '5.1'
+          os: windows-2019
+        - name: Win2019_PS-7
+          psversion: '7'
+          os: windows-2019
+        - name: Win2022_PS-5.1
           psversion: '5.1'
           os: windows-latest
-        - name: PS-7_Windows
+        - name: Win2022_PS-7
           psversion: '7'
           os: windows-latest
-        - name: PS-7_Linux
-          psversion: '7'
-          os: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -76,7 +85,7 @@ jobs:
     - name: Install Built PowerShell Module
       shell: pwsh
       run: |
-        $manifestItem = Get-Item ([IO.Path]::Combine('Module', '*.psd1'))
+        $manifestItem = Get-Item ([IO.Path]::Combine('SteamPS', '*.psd1'))
         $moduleName = $manifestItem.BaseName
         $manifest = Test-ModuleManifest -Path $manifestItem.FullName -ErrorAction SilentlyContinue -WarningAction Ignore
 
