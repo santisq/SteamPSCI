@@ -198,7 +198,7 @@ task DoUnitTest {
 }
 
 task DoTest {
-    $testsPath = [IO.Path]::Combine($PSScriptRoot, 'tests')
+    $testsPath = [IO.Path]::Combine($PSScriptRoot, 'Tests')
     if (-not (Test-Path $testsPath)) {
         Write-Host 'No Pester tests found, skipping...'
         return
