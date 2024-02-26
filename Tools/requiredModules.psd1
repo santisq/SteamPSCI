@@ -27,4 +27,8 @@
         Priority = 3
         Version  = '5.4.1'
     }
+    PSFramework           = @{
+        Priority = 3
+        Version  = '1.10.318'
+    }
 }
