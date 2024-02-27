@@ -1,11 +1,7 @@
 ﻿# By Joel Sallow - https://github.com/vexx32/
 
 BeforeAll {
-    $modulePath = [IO.Path]::Combine($PSScriptRoot, 'SteamPS')
-    $manifestItem = Get-Item ([IO.Path]::Combine($modulePath, '*.psd1'))
-    $ModuleName = $manifestItem.BaseName
-    $psm1 = Join-Path $modulePath -ChildPath ($ModuleName + '.psm1')
-    Import-Module $psm1
+    Import-Module $PSModuleFile
 }
 
 Describe "$ModuleName Sanity Tests - Help Content" -Tags 'Module' {
