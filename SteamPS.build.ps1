@@ -124,7 +124,7 @@ task Package {
 }
 
 task Analyze {
-    $analyzerPath = [IO.Path]::Combine($PSScriptRoot, 'ScriptAnalyzerSettings.psd1')
+    $analyzerPath = [IO.Path]::Combine($PSScriptRoot, 'PSScriptAnalyzerSettings.psd1')
     if (-not (Test-Path $analyzerPath)) {
         Write-Host 'No analyzer rules found, skipping...'
         return
@@ -132,7 +132,7 @@ task Analyze {
 
     $pssaSplat = @{
         Path        = $ReleasePath
-        Settings    = [IO.Path]::Combine($PSScriptRoot, 'ScriptAnalyzerSettings.psd1')
+        Settings    = [IO.Path]::Combine($PSScriptRoot, 'PSScriptAnalyzerSettings.psd1')
         Recurse     = $true
         ErrorAction = 'SilentlyContinue'
     }
@@ -145,7 +145,7 @@ task Analyze {
 }
 
 task DoUnitTest {
-    $testsPath = [IO.Path]::Combine($PSScriptRoot, 'tests', 'units')
+    $testsPath = [IO.Path]::Combine($PSScriptRoot, 'Tests', 'units')
     if (-not (Test-Path -LiteralPath $testsPath)) {
         Write-Host 'No unit tests found, skipping...'
         return
