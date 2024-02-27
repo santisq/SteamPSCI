@@ -4,10 +4,10 @@ param(
     [string] $Configuration = 'Debug'
 )
 
-$modulePath = [IO.Path]::Combine($PSScriptRoot, 'SteamPS')
-$manifestItem = Get-Item ([IO.Path]::Combine($modulePath, '*.psd1'))
+$global:SteamPSModulePath = [IO.Path]::Combine($PSScriptRoot, 'SteamPS')
+$manifestItem = Get-Item ([IO.Path]::Combine($SteamPSModulePath, '*.psd1'))
 $ModuleName = $manifestItem.BaseName
-$psm1 = Join-Path $modulePath -ChildPath ($ModuleName + '.psm1')
+$psm1 = Join-Path $SteamPSModulePath -ChildPath ($ModuleName + '.psm1')
 
 $testModuleManifestSplat = @{
     Path          = $manifestItem.FullName
@@ -42,7 +42,7 @@ task BuildDocs {
 
 task BuildPowerShell {
     $buildModuleSplat = @{
-        SourcePath      = $modulePath
+        SourcePath      = $SteamPSModulePath
         OutputDirectory = $ReleasePath
         Encoding        = 'UTF8Bom'
         IgnoreAlias     = $true
@@ -217,7 +217,7 @@ task DoTest {
     $testArgs = @{
         TestPath    = $testsPath
         ResultPath  = $resultsPath
-        SourceRoot  = $modulePath
+        SourceRoot  = $SteamPSModulePath
         ReleasePath = $ReleasePath
     }
 
