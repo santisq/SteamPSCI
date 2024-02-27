@@ -9,7 +9,7 @@
 Describe 'Resolve-VanityURL' {
     BeforeEach {
         function Get-SteamAPIKey {}
-        InModuleScope $env:BHProjectName {
+        InModuleScope SteamPS {
             Mock -CommandName Get-SteamAPIKey -MockWith {
                 Write-Output -InputObject $env:STEAMWEBAPI
             }
