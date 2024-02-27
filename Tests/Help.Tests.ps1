@@ -1,7 +1,7 @@
 ﻿# By Joel Sallow - https://github.com/vexx32/
 
 BeforeAll {
-    Import-Module $PSModuleFile
+    Import-Module $psm1
 }
 
 Describe "$ModuleName Sanity Tests - Help Content" -Tags 'Module' {

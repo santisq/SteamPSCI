@@ -24,13 +24,13 @@
 
     Context 'Module Import' {
         It 'cleanly imports the module' {
-            { Import-Module $SteamPSManifest -Force } | Should -Not -Throw
+            { Import-Module $env:BHPSModuleManifest -Force } | Should -Not -Throw
         }
 
         It 'removes and re-imports the module without errors' {
             $Script = {
-                Remove-Module $ModuleName
-                Import-Module $SteamPSManifest
+                Remove-Module $env:BHProjectName
+                Import-Module $env:BHPSModuleManifest
             }
 
             $Script | Should -Not -Throw
