@@ -31,4 +31,8 @@
         Priority = 3
         Version  = '1.10.318'
     }
+    BuildHelpers     = @{
+        Priority = 1
+        Version  = '2.0.16'
+    }
 }
