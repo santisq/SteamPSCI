@@ -55,8 +55,6 @@ end {
         Import-Module -Name $targetPath -Force -ErrorAction Stop -DisableNameChecking
     }
 
-    Set-BuildEnvironment
-
     if (Test-Path (Join-Path $PSScriptRoot src)) {
         $dotnetTools = @(dotnet tool list --global) -join "`n"
         if (-not $dotnetTools.Contains('coverlet.console')) {
