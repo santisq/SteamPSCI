@@ -17,6 +17,11 @@ end {
         [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor 'Tls12'
     }
 
+    $SteamPSModulePath = [IO.Path]::Combine($PSScriptRoot, 'SteamPS')
+    $SteamPSManifest = Get-Item ([IO.Path]::Combine($SteamPSModulePath, '*.psd1'))
+    $ModuleName = $SteamPSManifest.BaseName
+    $SteamPSModule = Join-Path $modulePath -ChildPath ($ModuleName + '.psm1')
+
     $modulePath = [IO.Path]::Combine($PSScriptRoot, 'tools', 'Modules')
     $requirements = Import-PowerShellDataFile ([IO.Path]::Combine($PSScriptRoot, 'tools', 'requiredModules.psd1'))
 
