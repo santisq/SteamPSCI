@@ -13,6 +13,7 @@ param(
 )
 
 begin {
+    Import-Module BuildHelpers
     Set-BuildEnvironment
 }
 
