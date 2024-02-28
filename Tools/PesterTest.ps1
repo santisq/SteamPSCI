@@ -84,6 +84,12 @@ $groups = $coverageReults | Group-Object SourceFile | ForEach-Object {
 }
 
 foreach ($group in $groups) {
+    Write-Host
+    Write-Host
+    Write-Host $group
+    Write-Host
+    Write-Host
+    Write-Host
     $map = $group.Group | Group-Object SourceLineNumber -AsHashTable -AsString
     $totalLines = [System.Linq.Enumerable]::Count(
         [System.IO.File]::ReadLines((Get-Item $group.Name).FullName))
