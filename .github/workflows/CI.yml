@@ -54,12 +54,6 @@ jobs:
       fail-fast: false
       matrix:
         info:
-        - name: Win2016_PS-5.1
-          psversion: '5.1'
-          os: windows-2016
-        - name: Win2016_PS-7
-          psversion: '7'
-          os: windows-2016
         - name: Win2019_PS-5.1
           psversion: '5.1'
           os: windows-2019
