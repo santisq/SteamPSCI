@@ -1,4 +1,4 @@
-name: PSParallelPipeline Workflow
+name: SteamPS CI/CD workflow
 on:
   push:
     branches:

@@ -83,11 +83,13 @@ $groups = $coverageReults | Group-Object SourceFile | ForEach-Object {
     $_
 }
 
+$groups | Format-List *
+
 foreach ($group in $groups) {
     Write-Host
     Write-Host
-    Write-Host $group
-    Write-Host
+    $group | Format-List *
+    Write-Host $group.Name
     Write-Host
     Write-Host
     $map = $group.Group | Group-Object SourceLineNumber -AsHashTable -AsString
