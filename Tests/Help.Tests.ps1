@@ -9,7 +9,7 @@ Describe "SteamPS Sanity Tests - Help Content" -Tags 'Module' {
     #region Discovery
 
     # The module will need to be imported during Discovery since we're using it to generate test cases / Context blocks
-    Import-Module $psm1
+    Import-Module "$($ReleasePath)\SteamPS.psm1"
 
     $ShouldProcessParameters = 'WhatIf', 'Confirm'
 
