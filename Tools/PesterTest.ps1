@@ -83,14 +83,7 @@ $groups = $coverageReults | Group-Object SourceFile | ForEach-Object {
     $_
 }
 
-Get-Content -Path 'D:\a\SteamPSCI\SteamPSCI\output\SteamPS\3.2.2\SteamPS.psm1'
-
 foreach ($group in $groups) {
-    Write-Host
-    Write-Host
-    $group | Format-List *
-    Write-Host
-    Write-Host
     $map = $group.Group | Group-Object SourceLineNumber -AsHashTable -AsString
     $totalLines = [System.Linq.Enumerable]::Count(
         [System.IO.File]::ReadLines((Get-Item $group.Name).FullName))

@@ -1,7 +1,7 @@
 ﻿Describe 'Static Analysis: Module & Repository Files' -Tags 'Module' {
     #region Discovery
     $FileSearch = @{
-        Path    = $SteamPSModulePath
+        Path    = $ReleasePath
         Include = '*.ps1', '*.psm1', '*.psd1'
         Recurse = $true
     }
@@ -24,13 +24,13 @@
 
     Context 'Module Import' {
         It 'cleanly imports the module' {
-            { Import-Module "$($SteamPSModulePath)\SteamPS.psd1" -Force } | Should -Not -Throw
+            { Import-Module "$($ReleasePath)\SteamPS.psd1" -Force } | Should -Not -Throw
         }
 
         It 'removes and re-imports the module without errors' {
             $Script = {
                 Remove-Module SteamPS
-                Import-Module "$($SteamPSModulePath)\SteamPS.psd1"
+                Import-Module "$($ReleasePath)\SteamPS.psd1"
             }
 
             $Script | Should -Not -Throw
