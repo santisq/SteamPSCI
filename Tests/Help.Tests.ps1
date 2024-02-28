@@ -1,10 +1,10 @@
 ﻿# By Joel Sallow - https://github.com/vexx32/
 
 BeforeAll {
-    Import-Module $psm1
+    Import-Module "$($ReleasePath)\SteamPS.psm1"
 }
 
-Describe "$ModuleName Sanity Tests - Help Content" -Tags 'Module' {
+Describe "SteamPS Sanity Tests - Help Content" -Tags 'Module' {
 
     #region Discovery
 
@@ -14,7 +14,7 @@ Describe "$ModuleName Sanity Tests - Help Content" -Tags 'Module' {
     $ShouldProcessParameters = 'WhatIf', 'Confirm'
 
     # Generate command list for generating Context / TestCases
-    $Module = Get-Module -Name $ModuleName
+    $Module = Get-Module -Name SteamPS
     $CommandList = @(
         $Module.ExportedFunctions.Keys
         $Module.ExportedCmdlets.Keys
