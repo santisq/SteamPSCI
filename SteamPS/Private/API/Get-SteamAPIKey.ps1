@@ -29,7 +29,7 @@
             $Exception = [Exception]::new("Steam Web API configuration file not found in '$env:AppData\SteamPS\SteamPSKey.json'. Run Connect-SteamAPI to configure an API key.")
             $ErrorRecord = [System.Management.Automation.ErrorRecord]::new(
                 $Exception,
-                "SteamAPIKeyNotFound",
+                'SteamAPIKeyNotFound',
                 [System.Management.Automation.ErrorCategory]::ObjectNotFound,
                 $SteamPSKey # usually the object that triggered the error, if possible
             )
@@ -38,15 +38,12 @@
             try {
                 $Config = Get-Content "$env:AppData\SteamPS\SteamPSKey.json"
                 $APIKeySecString = $Config | ConvertTo-SecureString
-                $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($APIKeySecString)
-                $APIKey = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
-
-                Write-Output -InputObject $APIKey
+                [System.Net.NetworkCredential]::new('', $APIKeySecString).Password
             } catch {
                 $Exception = [Exception]::new("Could not decrypt API key from configuration file not found in '$env:AppData\SteamPS\SteamPSKey.json'. Run Connect-SteamAPI to configure an API key.")
                 $ErrorRecord = [System.Management.Automation.ErrorRecord]::new(
                     $Exception,
-                    "InvalidAPIKey",
+                    'InvalidAPIKey',
                     [System.Management.Automation.ErrorCategory]::ParserError,
                     $APIKey # usually the object that triggered the error, if possible
                 )

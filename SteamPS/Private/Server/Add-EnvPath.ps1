@@ -6,7 +6,7 @@
 
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$Path,
 
         [ValidateSet('Machine', 'User', 'Session')]
@@ -22,7 +22,9 @@
             }
             $containerType = $containerMapping[$Container]
 
-            $persistedPaths = [Environment]::GetEnvironmentVariable('Path', $containerType) -split ';'
+            $persistedPaths = [Environment]::GetEnvironmentVariable('Path', $containerType).Split([System.IO.Path]::PathSeparator).Trim() |
+                Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
+
             if ($persistedPaths -notcontains $Path) {
                 $persistedPaths = $persistedPaths + $Path | Where-Object -FilterScript { $_ }
                 [Environment]::SetEnvironmentVariable('Path', $persistedPaths -join ';', $containerType)
